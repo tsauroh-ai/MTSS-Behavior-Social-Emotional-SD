@@ -1,0 +1,198 @@
+{
+  "entities": {
+    "Student": {
+      "title": "Student",
+      "description": "Student profile and current MTSS status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nisn": { "type": "string" },
+        "fullName": { "type": "string" },
+        "nickname": { "type": "string" },
+        "classId": { "type": "string" },
+        "className": { "type": "string" },
+        "grade": { "type": "number" },
+        "gender": { "type": "string", "enum": ["L", "P"] },
+        "birthDate": { "type": "string" },
+        "currentTier": { "type": "string", "enum": ["Tier 1", "Tier 2", "Tier 3"] },
+        "guardianName": { "type": "string" },
+        "guardianContact": { "type": "string" },
+        "needsReviewFlag": { "type": "boolean" },
+        "flagReason": { "type": "string" },
+        "notes": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "inactive"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "nisn", "fullName", "classId", "className", "currentTier"]
+    },
+    "EmotionRecord": {
+      "title": "EmotionRecord",
+      "description": "Daily emotion check-in and check-out records and CICO 21x tracking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "classId": { "type": "string" },
+        "className": { "type": "string" },
+        "date": { "type": "string" },
+        "checkIn": { "type": "object" },
+        "checkOut": { "type": "object" },
+        "cycle21Count": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "studentId", "classId", "date"]
+    },
+    "LdssRecord": {
+      "title": "LdssRecord",
+      "description": "Lazuardi Disability Screening System comprehensive screening records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "classId": { "type": "string" },
+        "className": { "type": "string" },
+        "dateFilled": { "type": "string" },
+        "filledBy": { "type": "string" },
+        "status": { "type": "string", "enum": ["Draft", "In Progress", "Completed"] },
+        "scores": { "type": "object" },
+        "findingsSummary": { "type": "string" },
+        "targetGoals": { "type": "string" },
+        "recommendedTier": { "type": "string", "enum": ["Tier 1", "Tier 2", "Tier 3"] },
+        "followUpRecommendations": { "type": "array" },
+        "documentDriveUrl": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "studentId", "classId", "dateFilled", "status"]
+    },
+    "SupervisionSchedule": {
+      "title": "SupervisionSchedule",
+      "description": "Principal and Inclusive Head supervision schedules and monitoring",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "classId": { "type": "string" },
+        "className": { "type": "string" },
+        "supervisorRole": { "type": "string", "enum": ["Kepala Sekolah", "Kepala Bidang Inklusif", "Keduanya"] },
+        "supervisorName": { "type": "string" },
+        "scheduledDate": { "type": "string" },
+        "time": { "type": "string" },
+        "topic": { "type": "string" },
+        "status": { "type": "string", "enum": ["Scheduled", "Completed", "Needs Reschedule", "Cancelled"] },
+        "hasilSupervisi": { "type": "string" },
+        "chekingKepalaSekolah": { "type": "object" },
+        "chekingKepalaBidangInklusif": { "type": "object" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "studentId", "supervisorRole", "scheduledDate", "status"]
+    },
+    "CaseConferenceRecord": {
+      "title": "CaseConferenceRecord",
+      "description": "Case conference recommendations and multidisciplinary meeting schedules",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "classId": { "type": "string" },
+        "className": { "type": "string" },
+        "reasonForConference": { "type": "string" },
+        "draftBipTitle": { "type": "string" },
+        "scheduledDate": { "type": "string" },
+        "scheduledTime": { "type": "string" },
+        "status": { "type": "string", "enum": ["Rekomendasi", "Dijadwalkan", "Selesai", "Tindak Lanjut"] },
+        "participants": { "type": "array" },
+        "notes": { "type": "string" },
+        "kesepakatan": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "studentId", "reasonForConference", "status"]
+    },
+    "User": {
+      "title": "User",
+      "description": "School staff, teacher, and leadership user accounts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "assignedClassIds": { "type": "array" },
+        "avatarUrl": { "type": "string" },
+        "phone": { "type": "string" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["id", "name", "email", "role"]
+    },
+    "WorkResult": {
+      "title": "WorkResult",
+      "description": "Saved work results, student observations, and intervention records stored in Firebase",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "workType": { "type": "string" },
+        "workTypeLabel": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorRole": { "type": "string" },
+        "authorId": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "classId": { "type": "string" },
+        "className": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "description": { "type": "string" },
+        "outcomes": { "type": "string" },
+        "followUpPlan": { "type": "string" },
+        "status": { "type": "string", "enum": ["Draft", "Dalam Proses", "Selesai", "Ditinjau Pimpinan", "Disetujui"] },
+        "scoreOrRating": { "type": "string" },
+        "tags": { "type": "array" },
+        "firebaseSynced": { "type": "boolean" },
+        "firebaseDocId": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "authorName", "workType", "description", "status"]
+    }
+  },
+  "firestore": {
+    "/students/{studentId}": {
+      "schema": { "$ref": "#/entities/Student" },
+      "description": "Students database records"
+    },
+    "/emotions/{emotionId}": {
+      "schema": { "$ref": "#/entities/EmotionRecord" },
+      "description": "Emotion check-in and check-out logs"
+    },
+    "/ldss_records/{ldssId}": {
+      "schema": { "$ref": "#/entities/LdssRecord" },
+      "description": "Ldss screening assessments"
+    },
+    "/supervisions/{supervisionId}": {
+      "schema": { "$ref": "#/entities/SupervisionSchedule" },
+      "description": "Supervision schedules and notes"
+    },
+    "/case_conferences/{caseConferenceId}": {
+      "schema": { "$ref": "#/entities/CaseConferenceRecord" },
+      "description": "Case conference records"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profiles"
+    },
+    "/work_results/{workResultId}": {
+      "schema": { "$ref": "#/entities/WorkResult" },
+      "description": "Saved work results and teacher intervention records"
+    }
+  }
+}
+

@@ -1,0 +1,6 @@
+{
+  "name": "Sistem MTSS Behavior & Social-Emotional SD",
+  "description": "Aplikasi internal sekolah dasar untuk pencatatan observasi perilaku, perkembangan social-emotional, perencanaan intervensi, progress monitoring, dan alur review MTSS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
